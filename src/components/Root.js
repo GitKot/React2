@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom'
-import AdminPage from './routs/adminca'
-import AuthPage from './routs/autentif'
+import AdminPage from './routs/adminPage'
+import AuthPage from './routs/authPage'
 
 class Root extends Component {
   render() {
