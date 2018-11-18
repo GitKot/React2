@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import {appName} from '../config'
 import {Record} from 'immutable'
 
+
 const ReducerRecord = Record({
     user: null,
     error: null,
@@ -12,6 +13,7 @@ export const moduleName = 'auth'
 export const SIGN_UP_REQUEST = `${appName}/${moduleName}/SIGN_UP_REQUEST`
 export const SIGN_UP_SUCCES = `${appName}/${moduleName}/SIGN_UP_SUCCES`
 export const SIGN_UP_ERROR = `${appName}/${moduleName}/SIGN_UP_ERROR`
+export const SIGN_IN_SUCCES = `${appName}/${moduleName}/SIGN_IN_SUCCES`
 
 export default function reducer(state = new ReducerRecord(), action){
     const {type, payload, error} = action 
@@ -20,7 +22,7 @@ export default function reducer(state = new ReducerRecord(), action){
         case SIGN_UP_REQUEST:
             return state.set('loading', true)
 
-        case SIGN_UP_SUCCES:
+        case SIGN_IN_SUCCES:
             return state
                 .set('loading', false)
                 .set('user', payload.user)
@@ -53,3 +55,11 @@ export function signUp(email, password){
             }))
     }
 }
+
+firebase.auth().onAuthStateChanged(user => {
+    const store = require('../redux').default
+    store.dispatch({
+        type: SIGN_IN_SUCCES ,
+        payload: {user}
+    })
+})

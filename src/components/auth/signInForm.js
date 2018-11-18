@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {reduxForm, Field} from 'redux-form'
+import ErrorField from '../common/errorFild'
 
 class SignInForm extends Component {
     render(){
@@ -8,11 +9,12 @@ class SignInForm extends Component {
             <div>
                 <h1>sign In</h1>
                 <form onSubmit = {handleSubmit}>
-                   
-                        <Field name='email' component ="input"/>
-                   
-                        <Field name='password' component ="input" type="password"/>
-                 
+                   <div>
+                        <Field name='email' component ={ErrorField}/>
+                   </div>
+                   <div>
+                        <Field name='password' component ={ErrorField} type="password"/>
+                    </div>
                     <div>
                         <input type = "submit" />
                     </div>
@@ -23,5 +25,5 @@ class SignInForm extends Component {
 }
 
 export default reduxForm({
-    form: 'auth'
+    form: 'auth' //назвать можно как угодноn но form  обязательно
 })(SignInForm)

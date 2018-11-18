@@ -4,7 +4,7 @@ import SignUpForm from "../auth/signUpForm"
 import {Route, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signUp, moduleName} from "../../ducks/auth"
-import Loader from '../loader'
+import Loader from '../common/loader'
  
 class AuthPage extends Component {
    
@@ -16,7 +16,7 @@ class AuthPage extends Component {
                 <NavLink to = '/auth/signin' activeStyle={{color:'red'}}>sign In</NavLink>
                 <NavLink to = '/auth/signup' activeStyle={{color:'red'}}>sign Up</NavLink>
                 
-                <Route path = "/auth/signin" render ={()=> <SignInForm onSubmit = {this.handleSingnIn}/>} />
+                <Route path = "/auth/signin" render ={ ()=> <SignInForm onSubmit = {this.handleSingnIn}/> } />
                
                 <Route path = "/auth/signup" render ={()=> <SignUpForm onSubmit = {this.handleSingnUp}/>} />
                 {loading && <Loader/>}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {reduxForm, Field} from 'redux-form'
 import emailValidator from 'email-validator'
-import ErrorFild from "./errorFild"
+import ErrorFild from "../common/errorFild"
 
 class SignUpForm extends Component {
     render(){
@@ -11,11 +11,9 @@ class SignUpForm extends Component {
                 <h1>sign Up</h1>
                 <form onSubmit = {handleSubmit}>
                     <div>
-                        <label>Email</label>
                         <Field name='email' component ={ErrorFild}/>
                     </div>
                     <div>
-                        <label>Password</label>
                         <Field name='password' component ={ErrorFild} type="password"/>
                     </div>
                     <div>
@@ -33,7 +31,6 @@ const validate = ({email, password}) => {
     else if(!emailValidator.validate(email)) errors.email = 'invalid email'
     if(!password) errors.password = 'password is required'
     else if(password.length < 8) errors.password = 'password id short'
-
     return errors
 }
 
